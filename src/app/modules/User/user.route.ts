@@ -10,22 +10,15 @@ const router = express.Router();
 // Create a new user
 router.post(
   '/create',
-  validateRequest(createUserValidation),
+  
   UserController.createUser
 );
-
-// 🔀 STATIC or semi-static routes BEFORE dynamic ones
-router.get('/profile-completion',auth(), UserController.getProfileCompletion);
-
-// Dynamic route LAST
-router.get('/:id', UserController.getUser);
-
-// Update a user by ID
-router.put(
-  '/:id',
-  auth(),
-  validateRequest(updateUserValidation),
-  UserController.updateUser
+router.get(
+  '/statistics',
+  
+  UserController.getStatistics
 );
+
+
 
 export const UserRoute = router;
