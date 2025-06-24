@@ -45,6 +45,13 @@ const getCategories = async (): Promise<{ name: string; total: number }[]> => {
 
   return categories;
 };
+const getProvidersByCategory = async (category: string) => {
+  return User.find({
+    profession: { $regex: new RegExp(`^${category}$`, 'i') },
+    role: 'SERVICE_PROVIDER',
+  });
+};
+
 const getAllServiceProviders = async () => {
   const providers = await User.find({ role: 'SERVICE_PROVIDER' }).select('-password'); // Hide password
   return providers;
@@ -66,5 +73,6 @@ const getServiceProviderById = async (id: string) => {
     export const ServiceProviderServices = {
         getCategories,
         getAllServiceProviders,
-        getServiceProviderById
+        getServiceProviderById,
+        getProvidersByCategory
     };

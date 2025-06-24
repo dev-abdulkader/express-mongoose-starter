@@ -38,13 +38,24 @@ const getServiceProvidersById = catchAsync(async (req: Request, res: Response) =
     data: result,
   });
 });
+const getProvidersByCategory = catchAsync(async (req: Request, res: Response) => {
+  const { categoryName } = req.params;
+  const result = await ServiceProviderServices.getProvidersByCategory(categoryName);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Service providers for category "${categoryName}" retrieved successfully`,
+    data: result,
+  });
+});
 
 export const ServiceProviderController = {
 
   
   getCategories,
   getServiceProviders,
-  getServiceProvidersById
+  getServiceProvidersById,
+  getProvidersByCategory
 };
 
 

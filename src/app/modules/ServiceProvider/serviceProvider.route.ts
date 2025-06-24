@@ -15,6 +15,8 @@ router.get(
  
   ServiceProviderController.getCategories
 );
+router.get('/categories/:categoryName', ServiceProviderController.getProvidersByCategory);
+
 router.get(
   '/',
   ServiceProviderController.getServiceProviders
@@ -22,6 +24,7 @@ router.get(
 router.get('/:id',
   ServiceProviderController.getServiceProvidersById
 );
+
 
 
 
